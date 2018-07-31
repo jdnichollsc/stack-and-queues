@@ -1,0 +1,79 @@
+### Implementing a stack
+Here are some basic tests for what a stack should be able to do:
+______________________________________________________________________________________
+class TestStack < Minitest::Test
+  def test_push_pop
+    stack = Stack.new
+
+    stack.push 3
+
+    assert_equal 3, stack.pop
+  end
+
+  def test_multi_push_pop
+    stack = Stack.new
+
+    stack.push 3
+    stack.push 5
+
+    assert_equal 5, stack.pop
+    assert_equal 3, stack.pop
+  end
+
+  def test_empty
+    stack = Stack.new
+    assert stack.empty?
+
+    stack.push 3
+    refute stack.empty?
+
+    stack.pop
+    assert stack.empty?
+  end
+end
+______________________________________________________________________________________
+A super simple stack implementation uses Ruby’s dynamic arrays and the built in push and pop methods. You might be more familiar with push as >> or shovel (although they are slightly different).
+______________________________________________________________________________________
+class Stack
+  def initialize
+    @data = []
+  end
+
+  def push a
+    @data.push a
+  end
+
+  def pop
+    @data.pop
+  end
+
+  def empty?
+    @data.empty?
+  end
+end
+______________________________________________________________________________________
+
+If you don’t want to use the built in methods here is another implementation that keeps track of the index of the last item put on the stack.
+______________________________________________________________________________________
+class Stack
+  def initialize
+    @data = []
+    @head = -1
+  end
+
+  def push a
+    @data << a
+    @head += 1
+  end
+
+  def pop
+    result = @data[@head]
+    @data.delete_at(@head)
+    @head -= 1
+    result
+  end
+
+  def empty?
+    @head == -1
+  end
+end
