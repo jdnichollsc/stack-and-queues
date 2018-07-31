@@ -1,0 +1,74 @@
+### Implementing a queue
+Here are the tests for a basic queue implementation.
+______________________________________________________________________________
+class TestQueue < Minitest::Test
+  def setup
+    @queue = Queue.new
+  end
+
+  def test_enqueue_one_item
+    @queue.enqueue 3
+    assert_equal 3, @queue.dequeue
+  end
+
+  def test_equeue_and_dequeue
+    @queue.enqueue 3
+    @queue.enqueue 5
+
+    assert_equal 3, @queue.dequeue
+    assert_equal 5, @queue.dequeue
+  end
+
+  def test_empty?
+    assert @queue.empty?
+  end
+end
+______________________________________________________________________________
+
+Like with stack the Array class has some built in methods that make implementing a queue easy. shift removes the first item in the array and returns it. This is dequeue. << can be used to add items to the end of the queue. Ruby arrays also have unshift which adds an item to the front of an array. This isn’t needed to implement a queue or a stack. Here’s the basic queue implementation.
+______________________________________________________________________________
+
+class Queue
+  def initialize
+    @data = []
+  end
+
+  def enqueue item
+    @data << item
+  end
+
+  def dequeue
+    @data.shift
+  end
+
+  def empty?
+    @data.empty?
+  end
+end
+______________________________________________________________________________
+
+And here’s a version that doesn’t use the built in methods. It is very similar to the stack implementation above.
+______________________________________________________________________________
+
+class Queue
+  def initialize
+    @data = []
+    @tail = -1
+  end
+
+  def enqueue item
+    @data << item
+    @tail += 1
+  end
+
+  def dequeue
+    result = @data[0]
+    @data.delete_at(0)
+    @tail -= 1
+    result
+  end
+
+  def empty?
+    @tail == -1
+  end
+end
