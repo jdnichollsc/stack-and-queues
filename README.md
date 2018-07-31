@@ -11,6 +11,8 @@ A stack is one of the simplest data structures. It is just like a pile of playin
 ##### Stack Pop
 <img src="http://www.thagomizer.com/img/StackPop.gif">
 
+### Queues
+You probably have experience with physical queues at amusement parks, concerts, or sports arenas. In the US, we usually call them lines. A queue is an ordered collection (or group) where we add things to one end (called the tail) and we remove things from the other end (called the head). Adding things to a queue is called enqueueing. Removing items from a queue is called dequeueing. This is also called FIFO for first in, first out.
 
 ##### Queue Add
 <img src="http://www.thagomizer.com/img/QueueAdd.gif">
